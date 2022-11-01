@@ -1,0 +1,13 @@
+Endpoints:
+
+  - path: "entity"
+    methods:
+      - method: post
+        handler: CreateNewEntity
+      - method: get
+        handler: GetBomzh
+
+  - path: "lol"
+    methods:
+      - method: get
+        handler: GetTest
