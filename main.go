@@ -1,8 +1,8 @@
 package main
 
 import (
-	"rest-playground/server"
-	"rest-playground/utils"
+	"module-rest/server"
+	"module-rest/utils"
 )
 
 var configFile = "api.yaml"

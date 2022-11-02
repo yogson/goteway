@@ -3,8 +3,8 @@ package handlers
 import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
+	"module-rest/logics"
 	"net/http"
-	"rest-playground/logics"
 )
 
 func init() {

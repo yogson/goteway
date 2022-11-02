@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"gopkg.in/yaml.v3"
 	"log"
-	"rest-playground/handlers"
+	"module-rest/handlers"
 	"strings"
 )
 
