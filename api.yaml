@@ -1,5 +1,10 @@
+Host: "localhost"
+Port: 5000
+Base: "/api/"
+Version:
+  use: false
+  num: "v.0.1"
 Endpoints:
-
   - path: "entity"
     methods:
       - method: post
@@ -7,7 +12,7 @@ Endpoints:
       - method: get
         handler: GetBomzh
 
-  - path: "lol"
+  - path: "ping"
     methods:
       - method: get
         handler: GetTest
