@@ -3,7 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
-	"module-rest/logics"
+	"goteway/logics"
 	"net/http"
 )
 

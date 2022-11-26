@@ -1,8 +1,8 @@
 package main
 
 import (
-	"module-rest/server"
-	"module-rest/utils"
+	"goteway/server"
+	"goteway/utils"
 )
 
 var configFile = "api.yaml"
