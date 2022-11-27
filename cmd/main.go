@@ -5,7 +5,9 @@ import (
 	"goteway/utils"
 )
 
-var configFile = "api.yaml"
+var version string
+
+var configFile = utils.GetEnv("GW-CONFIG", "api-gateway.yaml")
 
 func main() {
 	config := utils.ReadFile(configFile)
