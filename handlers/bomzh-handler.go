@@ -1,12 +1,15 @@
 package handlers
 
 import (
-	"github.com/gin-gonic/gin"
+	"goteway/sdk"
+	"goteway/server"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func init() {
-	RegisterHandler(GetBomzh)
+	server.Register(sdk.SimpleHandler{sdk.Named{"bomzh"}, GetBomzh})
 }
 
 func GetBomzh(c *gin.Context) {

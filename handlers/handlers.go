@@ -2,14 +2,16 @@ package handlers
 
 import (
 	"encoding/json"
-	"github.com/gin-gonic/gin"
 	"goteway/logics"
+	"goteway/sdk"
+	"goteway/server"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func init() {
-	RegisterHandler(CreateNewEntity)
-	RegisterHandler(GetTest)
+	server.Register(sdk.SimpleHandler{sdk.Named{"simple"}, GetTest})
 }
 
 func CreateNewEntity(c *gin.Context) {

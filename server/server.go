@@ -2,12 +2,14 @@ package server
 
 import (
 	"fmt"
+	"goteway/sdk"
+	"log"
+	"strings"
+
 	"github.com/gin-gonic/gin"
 	"gopkg.in/yaml.v3"
-	"log"
-	"goteway/handlers"
-	"strings"
 )
+
 
 type version struct {
 	UseVersion bool   `yaml:"use"`
@@ -62,10 +64,28 @@ func (s *Server) WithYamlConfig(config []byte) *Server {
 func (s *Server) stuffRouter() {
 	basePath := s.apiUri()
 	for _, ep := range s.Config.Endpoints {
+		base := basePath
+		if strings.ToLower(ep.UseBase) == "false" {
+			base = ""
+		}
 		for _, methodHandler := range ep.Methods {
-			handler := handlers.HandlerFunctions[methodHandler.Handler]
+			var middlewares []sdk.IHandler
+			for _, middlewareName := range methodHandler.Middleware {
+				middleware := HandlerFunctions[middlewareName]
+				if middleware == nil {continue}
+				middlewares = append(middlewares, middleware)
+			}
+			handler := HandlerFunctions[methodHandler.Handler]
+			if handler == nil {continue}
+			params := methodHandler.Params
+			handlersChain := s.getHandlersChain(handler, params)
 			s.router.Handle(
-				strings.ToUpper(methodHandler.Method), basePath+ep.Path, handler)
+				strings.ToUpper(methodHandler.Method), base+ep.Path, handlersChain...)
 		}
 	}
+}
+
+func (s *Server) getHandlersChain(handler sdk.IHandler, params map[string]any) []gin.HandlerFunc {
+	var chain []gin.HandlerFunc
+	return append(chain, handler.Get(params))
 }

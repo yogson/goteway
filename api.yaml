@@ -7,12 +7,12 @@ Version:
 Endpoints:
   - path: "entity"
     methods:
-      - method: post
-        handler: CreateNewEntity
       - method: get
-        handler: GetBomzh
+        handler: bomzh
 
   - path: "ping"
     methods:
       - method: get
-        handler: GetTest
+        handler: simple
+        middlewares:
+        -trace
