@@ -1,6 +1,7 @@
 Host: "localhost"
-Port: 5000
+Port: 5001
 Base: "/api/"
+Debug: true
 Version:
   use: false
   num: "v.0.1"
@@ -15,4 +16,4 @@ Endpoints:
       - method: get
         handler: simple
         middlewares:
-        -trace
+        - trace

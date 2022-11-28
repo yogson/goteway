@@ -3,11 +3,15 @@ package server
 import (
 	"fmt"
 	"goteway/sdk"
+	"goteway/utils"
 	"log"
 	"strings"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"gopkg.in/yaml.v3"
+
+	ginzap "github.com/gin-contrib/zap"
 )
 
 
@@ -18,11 +22,12 @@ type version struct {
 
 type Server struct {
 	Config struct {
-		Host       string     `yaml:"Host"`
-		Port       int        `yaml:"Port"`
-		URIBase    string     `yaml:"Base"`
-		APIVersion version    `yaml:"Version"`
-		Endpoints  []endpoint `yaml:"Endpoints"`
+		Host       	string     	`yaml:"Host"`
+		Port       	int        	`yaml:"Port"`
+		URIBase    	string     	`yaml:"Base"`
+		APIVersion 	version    	`yaml:"Version"`
+		Endpoints  	[]endpoint 	`yaml:"Endpoints"`
+		Debug		bool		`yaml:"Debug"`
 	}
 
 	router *gin.Engine
@@ -46,7 +51,8 @@ func New() *Server {
 }
 
 func (s *Server) Run() {
-	err := s.router.Run(fmt.Sprintf("%s:%d", s.Config.Host, s.Config.Port))
+	connStr := fmt.Sprintf("%s:%d", s.Config.Host, s.Config.Port)
+	err := s.router.Run(connStr)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -55,10 +61,27 @@ func (s *Server) Run() {
 func (s *Server) WithYamlConfig(config []byte) *Server {
 	err := yaml.Unmarshal(config, &s.Config)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Unable to load config: ", err)
+	}
+	if !s.Config.Debug {
+		s.router = s.getRouter()
 	}
 	s.stuffRouter()
+
 	return s
+}
+
+func (s *Server) getRouter() *gin.Engine {
+	router := gin.New()
+	err := router.SetTrustedProxies(nil)
+	if err != nil {
+		return gin.Default()
+	}
+	logger := utils.Logger
+	router.Use(ginzap.Ginzap(logger, time.RFC3339, true))
+	router.Use(ginzap.RecoveryWithZap(logger, true))
+
+	return router
 }
 
 func (s *Server) stuffRouter() {
