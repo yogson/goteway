@@ -4,11 +4,12 @@ import (
 	"goteway/server"
 	"goteway/utils"
 	_ "goteway/handlers"
+	_ "goteway/middleware"
 )
 
 var version string
 
-var configFile = utils.GetEnv("GW-CONFIG", "/Users/egor/GolandProjects/goteway/api.yaml")
+var configFile = utils.GetEnv("GW-CONFIG", "../api.yaml")
 
 func main() {
 	config := utils.ReadFile(configFile)

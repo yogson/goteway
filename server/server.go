@@ -92,18 +92,18 @@ func (s *Server) stuffRouter() {
 			base = ""
 		}
 		for _, methodHandler := range ep.Methods {
-			var middlewares []sdk.IHandler
+			var handlers []gin.HandlerFunc
 			for _, middlewareName := range methodHandler.Middleware {
 				middleware := HandlerFunctions[middlewareName]
 				if middleware == nil {continue}
-				middlewares = append(middlewares, middleware)
+				handlers = append(handlers, middleware.Get())
 			}
 			handler := HandlerFunctions[methodHandler.Handler]
 			if handler == nil {continue}
 			params := methodHandler.Params
-			handlersChain := s.getHandlersChain(handler, params)
+			handlers = append(handlers, handler.Get(params))
 			s.router.Handle(
-				strings.ToUpper(methodHandler.Method), base+ep.Path, handlersChain...)
+				strings.ToUpper(methodHandler.Method), base+ep.Path, handlers...)
 		}
 	}
 }

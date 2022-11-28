@@ -16,4 +16,4 @@ Endpoints:
       - method: get
         handler: simple
         middlewares:
-        - trace
+          - trace

@@ -4,7 +4,7 @@ package server
 type methodHandler struct {
 	Method  string `yaml:"method"`
 	Handler string `yaml:"handler"`
-	Middleware []string `yaml:"middleware"`
+	Middleware []string `yaml:"middlewares"`
 	Params map[string]any `yaml:"params"`
 }
 
