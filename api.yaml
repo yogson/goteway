@@ -9,8 +9,9 @@ Endpoints:
   - path: "entity"
     methods:
       - method: get
-        handler: bomzh
-
+        handler: datetime
+      - method: post
+        handler: create-entity
   - path: "ping"
     methods:
       - method: get

@@ -12,6 +12,7 @@ import (
 
 func init() {
 	server.Register(sdk.SimpleHandler{sdk.Named{"simple"}, GetTest})
+	server.Register(sdk.SimpleHandler{sdk.Named{"create-entity"}, CreateNewEntity})
 }
 
 func CreateNewEntity(c *gin.Context) {
