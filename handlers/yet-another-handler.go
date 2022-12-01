@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"time"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 

@@ -6,14 +6,13 @@ import (
 	"strings"
 	"time"
 
+	ginzap "github.com/gin-contrib/zap"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/yaml.v3"
-	ginzap "github.com/gin-contrib/zap"
 
 	"github.com/yogson/goteway/sdk"
 	"github.com/yogson/goteway/utils"
 )
-
 
 type version struct {
 	UseVersion bool   `yaml:"use"`
@@ -22,12 +21,12 @@ type version struct {
 
 type Server struct {
 	Config struct {
-		Host       	string     	`yaml:"Host"`
-		Port       	int        	`yaml:"Port"`
-		URIBase    	string     	`yaml:"Base"`
-		APIVersion 	version    	`yaml:"Version"`
-		Endpoints  	[]endpoint 	`yaml:"Endpoints"`
-		Debug		bool		`yaml:"Debug"`
+		Host       string     `yaml:"Host"`
+		Port       int        `yaml:"Port"`
+		URIBase    string     `yaml:"Base"`
+		APIVersion version    `yaml:"Version"`
+		Endpoints  []endpoint `yaml:"Endpoints"`
+		Debug      bool       `yaml:"Debug"`
 	}
 
 	router *gin.Engine
@@ -95,11 +94,15 @@ func (s *Server) stuffRouter() {
 			var handlers []gin.HandlerFunc
 			for _, middlewareName := range methodHandler.Middleware {
 				middleware := HandlerFunctions[middlewareName]
-				if middleware == nil {continue}
+				if middleware == nil {
+					continue
+				}
 				handlers = append(handlers, middleware.Get())
 			}
 			handler := HandlerFunctions[methodHandler.Handler]
-			if handler == nil {continue}
+			if handler == nil {
+				continue
+			}
 			params := methodHandler.Params
 			handlers = append(handlers, handler.Get(params))
 			s.router.Handle(

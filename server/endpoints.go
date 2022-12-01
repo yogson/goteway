@@ -1,15 +1,14 @@
 package server
 
-
 type methodHandler struct {
-	Method  string `yaml:"method"`
-	Handler string `yaml:"handler"`
-	Middleware []string `yaml:"middlewares"`
-	Params map[string]any `yaml:"params"`
+	Method     string         `yaml:"method"`
+	Handler    string         `yaml:"handler"`
+	Middleware []string       `yaml:"middlewares"`
+	Params     map[string]any `yaml:"params"`
 }
 
 type endpoint struct {
 	Path    string          `yaml:"path"`
-	UseBase string			`yaml:"use-base,omitempty"`
-	Methods []methodHandler	`yaml:"methods"`
+	UseBase string          `yaml:"use-base,omitempty"`
+	Methods []methodHandler `yaml:"methods"`
 }
