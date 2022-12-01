@@ -2,10 +2,11 @@ package middleware
 
 import (
 	"fmt"
-	"github.com/yogson/goteway/sdk"
-	"github.com/yogson/goteway/server"
 
 	"github.com/gin-gonic/gin"
+
+	"github.com/yogson/goteway/sdk"
+	"github.com/yogson/goteway/server"
 )
 
 func init() {

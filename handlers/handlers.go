@@ -1,14 +1,14 @@
 package handlers
 
 import (
-	"github.com/yogson/goteway/logics"
-	"github.com/yogson/goteway/sdk"
-	"github.com/yogson/goteway/server"
-	
 	"encoding/json"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+
+	"github.com/yogson/goteway/logics"
+	"github.com/yogson/goteway/sdk"
+	"github.com/yogson/goteway/server"
 )
 
 func init() {

@@ -2,12 +2,12 @@ package handlers
 
 import (
 	"time"
-
-	"github.com/yogson/goteway/sdk"
-	"github.com/yogson/goteway/server"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+
+	"github.com/yogson/goteway/sdk"
+	"github.com/yogson/goteway/server"
 )
 
 func init() {
