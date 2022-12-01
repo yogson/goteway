@@ -2,8 +2,8 @@ package server
 
 import (
 	"fmt"
-	"goteway/sdk"
-	"goteway/utils"
+	"github.com/yogson/goteway/sdk"
+	"github.com/yogson/goteway/utils"
 	"log"
 	"strings"
 	"time"

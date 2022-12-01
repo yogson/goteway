@@ -1,6 +1,6 @@
 package server
 
-import "goteway/sdk"
+import "github.com/yogson/goteway/sdk"
 
 var HandlerFunctions = map[string]sdk.IHandler{}
 

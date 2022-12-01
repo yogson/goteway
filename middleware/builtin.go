@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"fmt"
-	"goteway/sdk"
-	"goteway/server"
+	"github.com/yogson/goteway/sdk"
+	"github.com/yogson/goteway/server"
 
 	"github.com/gin-gonic/gin"
 )

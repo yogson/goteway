@@ -3,8 +3,8 @@ package handlers
 import (
 	"time"
 
-	"goteway/sdk"
-	"goteway/server"
+	"github.com/yogson/goteway/sdk"
+	"github.com/yogson/goteway/server"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

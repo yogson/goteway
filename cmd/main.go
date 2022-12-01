@@ -1,10 +1,10 @@
 package main
 
 import (
-	"goteway/server"
-	"goteway/utils"
-	_ "goteway/handlers"
-	_ "goteway/middleware"
+	"github.com/yogson/goteway/server"
+	"github.com/yogson/goteway/utils"
+	_ "github.com/yogson/goteway/handlers"
+	_ "github.com/yogson/goteway/middleware"
 )
 
 var version string

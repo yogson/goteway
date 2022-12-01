@@ -1,10 +1,11 @@
 package handlers
 
 import (
+	"github.com/yogson/goteway/logics"
+	"github.com/yogson/goteway/sdk"
+	"github.com/yogson/goteway/server"
+	
 	"encoding/json"
-	"goteway/logics"
-	"goteway/sdk"
-	"goteway/server"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
